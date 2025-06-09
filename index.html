@@ -52,15 +52,13 @@
     @media (max-width: 600px) {
       h1 { font-size: 2em; }
     }
-    /* Secret message modal styles */
     .modal {
-      display: none; /* Hidden */
+      display: none;
       position: fixed;
       z-index: 10000;
       left: 0; top: 0;
       width: 100%; height: 100%;
       background-color: rgba(0,0,0,0.5);
-      
       align-items: center;
       justify-content: center;
     }
@@ -85,7 +83,6 @@
       cursor: pointer;
       color: #ff1493;
     }
-    /* Secret button style */
     #secret-btn {
       background-color: #ff69b4;
       color: white;
@@ -102,11 +99,10 @@
     #secret-btn:hover {
       background-color: #e055a0;
     }
-    /* Music button style */
     .music-control {
       position: fixed;
-      top: 10px;
-      left: 10px;
+      bottom: 20px;
+      right: 20px;
       background-color: #ff69b4;
       color: white;
       padding: 10px 15px;
@@ -115,6 +111,7 @@
       font-size: 16px;
       cursor: pointer;
       z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
   </style>
 </head>
@@ -127,7 +124,7 @@
     <div class="section">
       <h2>Хайрт Хонгор -д</h2>
       <p>
-        Өнөөдөр бидний хамтдаа өнгөрүүлсэн 100 дахь өдөр!<br>
+        Өнөөдөр бидний үерхээд өнгөрүүлсэн 100 дахь өдөр!<br>
         Чи миний амьдралд орж ирсэн цагаас хойш бүх зүйл илүү гэрэлтэй, аз жаргалтай болсон.<br>
         Энэ 100 хоногийн бүхий л мөч, инээмсэглэл, хайр бүхнийг би чин сэтгэлээсээ талархан дурсдаг.<br>
         Цаашдаа ч хамтдаа олон гайхалтай дурсамж бүтээхийг хүсэж байна.
@@ -142,20 +139,18 @@
     </div>
   </div>
 
-  <!-- Secret message modal -->
   <div id="secret-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
     <div class="modal-content">
       <button class="close-btn" aria-label="Close secret message">&times;</button>
       <p id="modal-desc">
-                        Чи бол миний бүхнээс илүү хайртай хүн.<br>
-            Би чиний инээмсэглэлийг, хоолойг, халамжийг өдөр бүр мэдрэхийг хүсдэг.<br>
-                Чамтай хамт байх нь миний хамгийн аз жаргалтай мөч юм. <br>
-                                    BONDOG BONDOG💖
+        Чи бол миний бүхнээс илүү хайртай хүн.<br>
+        Би чиний инээмсэглэлийг, хоолойг, халамжийг өдөр бүр мэдрэхийг хүсдэг.<br>
+        Чамтай хамт байх нь миний хамгийн аз жаргалтай мөч юм.<br>
+        BONDOG BONDOG💖
       </p>
     </div>
   </div>
 
-  <!-- Music Control for index -->
   <button class="music-control" id="music-toggle">🎶 Play Music</button>
 
   <audio id="background-music" loop>
@@ -163,40 +158,37 @@
     Your browser does not support the audio element.
   </audio>
 
-<script>
-  // Music play/pause
-  const musicBtn = document.getElementById("music-toggle");
-  const music = document.getElementById("background-music");
+  <script>
+    const musicBtn = document.getElementById("music-toggle");
+    const music = document.getElementById("background-music");
 
-  musicBtn.addEventListener('click', () => {
-    if (music.paused) {
-      music.play();
-      musicBtn.textContent = "🎶 Pause Music";
-    } else {
-      music.pause();
-      musicBtn.textContent = "🎶 Play Music";
-    }
-  });
+    musicBtn.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        musicBtn.textContent = "🎶 Pause Music";
+      } else {
+        music.pause();
+        musicBtn.textContent = "🎶 Play Music";
+      }
+    });
 
-  // Secret message modal logic
-  const secretBtn = document.getElementById('secret-btn');
-  const modal = document.getElementById('secret-modal');
-  const closeBtn = modal.querySelector('.close-btn');
+    const secretBtn = document.getElementById('secret-btn');
+    const modal = document.getElementById('secret-modal');
+    const closeBtn = modal.querySelector('.close-btn');
 
-  secretBtn.addEventListener('click', () => {
-    modal.style.display = 'flex';
-  });
+    secretBtn.addEventListener('click', () => {
+      modal.style.display = 'flex';
+    });
 
-  closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
-
-  // Close modal when clicking outside modal content
-  window.addEventListener('click', (event) => {
-    if (event.target === modal) {
+    closeBtn.addEventListener('click', () => {
       modal.style.display = 'none';
-    }
-  });
-</script>
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
